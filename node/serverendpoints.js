@@ -1,0 +1,1 @@
+serverendpoints.js
