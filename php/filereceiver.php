@@ -1,11 +1,29 @@
 <?php
+chdir('../');
+$userID = 42;
 
-$result = move_uploaded_file($_FILES['imageToUpload']['tmp_name'], '../uploadedImages/' . $_FILES['imageToUpload']['name']);
+$targetDir = "uploadedImages/{$userID}/";
+if(!file_exists($targetDir)){
+	mkdir($targetDir);
+}
+
+$result = move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $targetDir . $_FILES['imageToUpload']['name']);
+
 
 if($result){
-	print("file was uploaded");
+	$uploadedFiles = glob("$targetDir*");
+	$outputData = [
+		'success'=>true,
+		'files' => $uploadedFiles
+	];
+	$json_files = json_encode( $outputData );
+
+	print($json_files);
 } else {
-	print("file failed to upload");
+	print( json_encode( ['success'=>false]));
 }
+
+
+
 
 ?>

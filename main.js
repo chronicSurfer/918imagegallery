@@ -19,10 +19,34 @@ function uploadFileToServer(){
 		mimeType: 'multipart/form-data',
 		contentType: false,
 		processData: false,
+		dataType: 'json',
 		type: 'POST',
 	}).then( handleFileUploadSuccess )
 }
 
-function handleFileUploadSuccess(){
-	console.log('success!')
+function handleFileUploadSuccess( response ){
+	if( response.success ){
+		const fileElements = [];
+		for(var fileI=0; fileI < response.files.length; fileI++ ){
+			fileElements.push( makeImage( response.files[fileI] ));
+		}
+		//const fileElements2 = response.files.map( makeImage );
+		$("#gallery").empty().append( fileElements );
+	}
 }
+
+function makeImage( url ){
+	return $("<img>",{
+		src: url,
+		'class': 'galleryImage'
+	})
+}
+
+
+
+
+
+
+
+
+
