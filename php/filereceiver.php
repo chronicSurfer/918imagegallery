@@ -3,8 +3,8 @@ chdir('../');
 $userID = 42;
 
 $targetDir = "uploadedImages/{$userID}/";
-if(!file_exists($targetDir)){
-	mkdir($targetDir);
+if(!file_exists( $targetDir )){
+	mkdir( $targetDir );
 }
 
 $result = move_uploaded_file($_FILES['imageToUpload']['tmp_name'], $targetDir . $_FILES['imageToUpload']['name']);

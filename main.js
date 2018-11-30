@@ -3,6 +3,7 @@ $(document).ready(startApp);
 
 
 function startApp(){
+	getAllFiles();
 	initializeHandlers();
 }
 
@@ -22,6 +23,14 @@ function uploadFileToServer(){
 		dataType: 'json',
 		type: 'POST',
 	}).then( handleFileUploadSuccess )
+}
+
+function getAllFiles(){
+	$.ajax({
+		url: 'php/getallfiles.php',
+		dataType: 'json',
+		type: 'POST',
+	}).then( handleFileUploadSuccess )	
 }
 
 function handleFileUploadSuccess( response ){
