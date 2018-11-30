@@ -1,0 +1,12 @@
+
+
+#gallery{
+
+}
+.galleryLink{
+	width: 20%;
+	display: inline-block;
+}
+.galleryLink img {
+	width: 100%;
+}
