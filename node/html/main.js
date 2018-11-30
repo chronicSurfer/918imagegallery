@@ -15,7 +15,7 @@ function uploadFileToServer(){
 
 	const formData = new FormData( document.querySelector('#uploadForm'));
 	$.ajax({
-		url: 'php/filereceiver.php',
+		url: '/upload',
 		data: formData,
 		mimeType: 'multipart/form-data',
 		contentType: false,
@@ -27,7 +27,7 @@ function uploadFileToServer(){
 
 function getAllFiles(){
 	$.ajax({
-		url: 'php/getallfiles.php',
+		url: '/getfiles',
 		dataType: 'json',
 		type: 'POST',
 	}).then( handleFileUploadSuccess )	
@@ -45,10 +45,16 @@ function handleFileUploadSuccess( response ){
 }
 
 function makeImage( url ){
-	return $("<img>",{
+	var a = $("<a>",{
+		href: url,
+		'class': 'galleryLink'
+	})
+	var img = $("<img>",{
 		src: url,
 		'class': 'galleryImage'
 	})
+	a.append(img);
+	return a;
 }
 
 
